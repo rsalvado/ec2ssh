@@ -16,6 +16,8 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Ramon Salvadó"]
   gem.executables = ["ec2ssh"]
   gem.add_dependency(%q<highline>, '>= 1.5.2')
+  gem.add_dependency(%q<aws>, '>= 2.5.6')
+  gem.add_dependency(%q<activesupport>, '>= 2.3.14')
 end
 Jeweler::RubygemsDotOrgTasks.new
 

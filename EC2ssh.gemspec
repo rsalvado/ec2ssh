@@ -40,11 +40,17 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<highline>, [">= 1.5.2"])
+      s.add_runtime_dependency(%q<aws>, [">= 2.5.6"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 2.3.14"])
     else
       s.add_dependency(%q<highline>, [">= 1.5.2"])
+      s.add_dependency(%q<aws>, [">= 2.5.6"])
+      s.add_dependency(%q<activesupport>, [">= 2.3.14"])
     end
   else
     s.add_dependency(%q<highline>, [">= 1.5.2"])
+    s.add_dependency(%q<aws>, [">= 2.5.6"])
+    s.add_dependency(%q<activesupport>, [">= 2.3.14"])
   end
 end
 
