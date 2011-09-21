@@ -7,7 +7,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "ec2ssh"
+  gem.name = "EC2ssh"
   gem.homepage = "http://github.com/rsalvado/ec2ssh"
   gem.license = "MIT"
   gem.summary = %Q{A script to make it easier to ssh into running amazon EC2 instances.}
