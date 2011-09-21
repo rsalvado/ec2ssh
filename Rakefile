@@ -1,14 +1,7 @@
 # encoding: utf-8
 
 require 'rubygems'
-require 'bundler'
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
+
 require 'rake'
 
 require 'jeweler'
@@ -17,11 +10,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ec2ssh"
   gem.homepage = "http://github.com/rsalvado/ec2ssh"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A script to make it easier to ssh into running amazon EC2 instances.}
+  gem.description = %Q{Since ec2 instance public hostnames are dynamic, and not easy to remember or type, this script provides a list all your running instances so you can select the one you want to ssh into easily (without having to pass the aws console ritual each time you need the hostname).}
   gem.email = "rsalvado@gnuine.com"
   gem.authors = ["Ramon Salvadó"]
-  # dependencies defined in Gemfile
+  gem.executables = ["ec2ssh"]
+  gem.add_dependency(%q<highline>, '>= 1.5.2')
 end
 Jeweler::RubygemsDotOrgTasks.new
 

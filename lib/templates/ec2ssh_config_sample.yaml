@@ -1,0 +1,18 @@
+# YAML file with your account credentials and configuration for your accounts.
+---
+# Default account to use
+:default:
+  :id: yourid
+  :key: yourkey
+  # Regions to check for running instances
+  :regions:
+  - us-east-1
+# Another account, you can ec2ssh second
+:second:
+  :id: yourid
+  :key: yourkey
+  :regions:
+  - eu-west-1
+  - us-east-1
+  # Command to run on selected instance. <instance> will be replaced by the selected instance hostname
+  :template: "ssh ec2-user@<instance> -i your-key.pem"
