@@ -7,6 +7,9 @@ rescue LoadError
   require 'ec2ssh'
 end
 
+# Unset EC2_URL it can cause problems with aws gem
+ENV["EC2_URL"] = nil
+
 # TODO: Add proper command line arguments handling
 account = ARGV[0] || "default"
 

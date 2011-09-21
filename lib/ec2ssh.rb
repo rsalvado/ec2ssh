@@ -61,9 +61,8 @@ module Ec2ssh
           Aws::Ec2.new(id, key, :region => region).describe_instances
         end
       end.flatten
-    rescue Aws::AwsError
-      puts "AWS Error. Please review your credentials ~/.ec2ssh"
-      exit(false)
+    rescue Aws::AwsError => e
+      abort "AWS Error. #{e.message}"
     end
 
   end
