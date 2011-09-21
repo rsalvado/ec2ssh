@@ -6,7 +6,7 @@ Since ec2 instance public hostnames are dynamic, and not easy to remember or typ
 
 You can configure several accounts, customize the action to run on the selected instance and restrict the list to only the regions you want.
 
-You can customize *ec2ssh* behaviour using the +~/.ec2ssh+ yaml config file. A sample file will be created on first run if it doesn't already exist.
+You can customize *ec2ssh* behaviour using the <tt>~/.ec2ssh</tt> yaml config file. A sample file will be created on first run if it doesn't already exist.
 
 Invocation examples:
 
@@ -20,7 +20,7 @@ Example menu:
   0. i-5e523428:  gandalf webserver sysadmins  ec2-79-165-69-177.eu-west-1.compute.amazonaws.com
   1. i-5e653429:  frodo   database  sysadmins  ec2-45-134-69-185.eu-west-1.compute.amazonaws.com
 
-Columns in order: +instance id+, +Name Tag+, +security groups+, +ssh key name+, +dns_name+.
+Columns in order: <tt>instance id</tt>, <tt>Name Tag</tt>, <tt>security groups</tt>, <tt>ssh key name</tt>, <tt>dns_name</tt>.
 
 == Contributing to ec2ssh
 
