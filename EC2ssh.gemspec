@@ -20,12 +20,12 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    "EC2ssh.gemspec",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
     "bin/ec2ssh",
-    "ec2ssh.gemspec",
     "lib/ec2ssh.rb",
     "lib/templates/ec2ssh_config_sample.yaml"
   ]

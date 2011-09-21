@@ -1,4 +1,4 @@
-= ec2ssh
+= EC2ssh
 
 A script to make it easier to ssh into running amazon EC2 instances.
 
@@ -6,7 +6,7 @@ Since ec2 instance public hostnames are dynamic, and not easy to remember or typ
 
 You can configure several accounts, customize the action to run on the selected instance and restrict the list to only the regions you want.
 
-You can customize *ec2ssh* behaviour using the <tt>~/.ec2ssh</tt> yaml config file. A sample file will be created on first run if it doesn't already exist.
+You can customize *EC2ssh* behaviour using the <tt>~/.ec2ssh</tt> yaml config file. A sample file will be created on first run if it doesn't already exist.
 
 Invocation examples:
 
