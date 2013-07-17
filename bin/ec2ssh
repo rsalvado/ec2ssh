@@ -7,11 +7,25 @@ rescue LoadError
   require 'ec2ssh'
 end
 
+require 'optparse'
+
 # Unset EC2_URL it can cause problems with aws gem
 ENV["EC2_URL"] = nil
 
-# TODO: Add proper command line arguments handling
-account = ARGV[0] || "default"
+# Detect if first param has no "-". That means that its the account
+account = if ARGV[0] && ! ARGV[0].to_s.match(/^-/)
+  ARGV.shift || "default"
+end
 
-ec2ssh = Ec2ssh::App.new("~/.ec2ssh", account.to_sym)
-ec2ssh.select_instance
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ec2ssh [ACCOUNT] [options]"
+
+  opts.on("-f FILTER", 'Filter host names by tag') do |v|
+    options[:filter] = v.to_s
+  end
+
+end.parse!(ARGV)
+
+ec2ssh = Ec2ssh::App.new("~/.ec2ssh", (account || "default").to_sym)
+ec2ssh.select_instance([], options[:filter] )

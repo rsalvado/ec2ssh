@@ -14,6 +14,8 @@ Invocation examples:
   ec2ssh
   # To use the second account
   ec2ssh second
+  # To filter by tag
+  ec2ssh -f production
 
 Example menu:
 

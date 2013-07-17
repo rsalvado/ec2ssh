@@ -16,14 +16,14 @@ module Ec2ssh
       @config = read_aws_config(file, account)
     end
 
-    def select_instance(instances=[])
+    def select_instance(instances=[], filter = nil)
       # TODO: Order by region
       # TODO: Ansi colors https://github.com/JEG2/highline/blob/master/examples/ansi_colors.rb
       instances = get_all_ec2_instances
       n = 0
       hostnames = []
       instances.each do |i|
-        if i[:aws_state] == "running"
+        if i[:aws_state] == "running" && check_filter( filter, i )
           puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-60s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:ssh_key_name], i[:dns_name] ]
           hostnames << i[:dns_name]
           n = n + 1
@@ -63,6 +63,11 @@ module Ec2ssh
       end.flatten
     rescue Aws::AwsError => e
       abort "AWS Error. #{e.message}"
+    end
+
+    def check_filter( filter, instance )
+      return true unless filter
+      instance[:tags]["Name"].to_s.include? filter
     end
 
   end
