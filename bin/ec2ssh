@@ -21,11 +21,14 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: ec2ssh [ACCOUNT] [options]"
 
-  opts.on("-f FILTER", 'Filter host names by tag') do |v|
-    options[:filter] = v.to_s
+  opts.on("-t FILTER", 'Filter host names by tag') do |v|
+    options[:filter_tag] = v.to_s
+  end
+  opts.on("-p FILTER", 'Filter host names by private IP address') do |v|
+    options[:filter_ip] = v.to_s
   end
 
 end.parse!(ARGV)
 
 ec2ssh = Ec2ssh::App.new("~/.ec2ssh", (account || "default").to_sym)
-ec2ssh.select_instance([], options[:filter] )
+ec2ssh.select_instance([], options[:filter_tag], options[:filter_ip] )
