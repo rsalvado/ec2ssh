@@ -15,14 +15,16 @@ Invocation examples:
   # To use the second account
   ec2ssh second
   # To filter by tag
-  ec2ssh -f production
+  ec2ssh -t production
+  # To filter by private IP address 
+  ec2ssh -p 10.10.10.10
 
 Example menu:
 
-  0. i-5e523428:  gandalf webserver sysadmins  ec2-79-165-69-177.eu-west-1.compute.amazonaws.com
-  1. i-5e653429:  frodo   database  sysadmins  ec2-45-134-69-185.eu-west-1.compute.amazonaws.com
+  0. i-5e523428:  gandalf webserver ec2-79-165-69-177.eu-west-1.compute.amazonaws.com 10.34.161.45
+  1. i-5e653429:  frodo   database  ec2-45-134-69-185.eu-west-1.compute.amazonaws.com 10.45.24.2
 
-Columns in order: <tt>instance id</tt>, <tt>Name Tag</tt>, <tt>security groups</tt>, <tt>ssh key name</tt>, <tt>dns_name</tt>.
+Columns in order: <tt>instance id</tt>, <tt>Name Tag</tt>, <tt>security groups</tt>, <tt>dns_name</tt>, <tt>private_ip_address</tt>.
 
 == Contributing to ec2ssh
 
