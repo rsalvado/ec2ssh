@@ -27,8 +27,11 @@ OptionParser.new do |opts|
   opts.on("-p FILTER", 'Filter host names by private IP address') do |v|
     options[:filter_ip] = v.to_s
   end
+  opts.on("-s FILTER", 'Filter host names by security group') do |v|
+    options[:filter_sg] = v.to_s
+  end
 
 end.parse!(ARGV)
 
 ec2ssh = Ec2ssh::App.new("~/.ec2ssh", (account || "default").to_sym)
-ec2ssh.select_instance([], options[:filter_tag], options[:filter_ip] )
+ec2ssh.select_instance([], options[:filter_tag], options[:filter_ip], options[:filter_sg] )
