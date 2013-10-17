@@ -24,7 +24,7 @@ module Ec2ssh
       hostnames = []
       instances.each do |i|
         if i[:aws_state] == "running" && check_filter_tag( filter_tag, i ) && check_filter_ip( filter_ip, i ) && check_filter_sg( filter_sg, i )
-          puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-60s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:dns_name], i[:aws_private_ip_address] ]
+          puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-50s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:dns_name], i[:aws_private_ip_address] ]
           hostnames << i[:dns_name]
           n = n + 1
 	end
