@@ -18,6 +18,8 @@ Invocation examples:
   ec2ssh -t production
   # To filter by private IP address 
   ec2ssh -p 10.10.10.10
+  # To filter by security group 
+  ec2ssh -s default
 
 Example menu:
 
