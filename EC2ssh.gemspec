@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{EC2ssh}
-  s.version = "0.1.6"
+  s.version = "0.1.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Ramon Salvad\303\263"]
+  s.authors = ["Ramon Salvad\303\263, " "Jordi Beltran, " "Oriol Fit\303\263"]
   s.date = %q{2011-09-21}
   s.default_executable = %q{ec2ssh}
   s.description = %q{Since ec2 instance public hostnames are dynamic, and not easy to remember or type, this script provides a list all your running instances so you can select the one you want to ssh into easily (without having to pass the aws console ritual each time you need the hostname).}

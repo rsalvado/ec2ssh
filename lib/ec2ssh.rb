@@ -16,18 +16,18 @@ module Ec2ssh
       @config = read_aws_config(file, account)
     end
 
-    def select_instance(instances=[], filter = nil)
+    def select_instance(instances=[], filter_tag = nil, filter_ip = nil, filter_sg = nil)
       # TODO: Order by region
       # TODO: Ansi colors https://github.com/JEG2/highline/blob/master/examples/ansi_colors.rb
       instances = get_all_ec2_instances
       n = 0
       hostnames = []
       instances.each do |i|
-        if i[:aws_state] == "running" && check_filter( filter, i )
-          puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-60s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:ssh_key_name], i[:dns_name] ]
+        if i[:aws_state] == "running" && check_filter_tag( filter_tag, i ) && check_filter_ip( filter_ip, i ) && check_filter_sg( filter_sg, i )
+          puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-50s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:dns_name], i[:aws_private_ip_address] ]
           hostnames << i[:dns_name]
           n = n + 1
-        end
+	end
       end
       template = @config[:template] || "ssh #{Etc.getlogin}@<instance>"
       selected_host = ask("Host?  ", Integer) { |q| q.in = 0..hostnames.count }
@@ -65,9 +65,19 @@ module Ec2ssh
       abort "AWS Error. #{e.message}"
     end
 
-    def check_filter( filter, instance )
+    def check_filter_tag( filter, instance )
       return true unless filter
       instance[:tags]["Name"].to_s.include? filter
+    end
+
+    def check_filter_ip( filter, instance )
+      return true unless filter
+      instance[:aws_private_ip_address].to_s.include? filter
+    end
+
+    def check_filter_sg( filter, instance )
+      return true unless filter
+      instance[:aws_groups].to_s.include? filter
     end
 
   end
