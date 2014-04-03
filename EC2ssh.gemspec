@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{EC2ssh}
-  s.version = "0.1.7"
+  s.name = "EC2ssh"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Ramon Salvad\303\263, " "Jordi Beltran, " "Oriol Fit\303\263"]
-  s.date = %q{2011-09-21}
-  s.default_executable = %q{ec2ssh}
-  s.description = %q{Since ec2 instance public hostnames are dynamic, and not easy to remember or type, this script provides a list all your running instances so you can select the one you want to ssh into easily (without having to pass the aws console ritual each time you need the hostname).}
-  s.email = %q{rsalvado@gnuine.com}
+  s.authors = ["Ramon Salvad\u{f3}"]
+  s.date = "2014-04-03"
+  s.description = "Since ec2 instance public hostnames are dynamic, and not easy to remember or type, this script provides a list all your running instances so you can select the one you want to ssh into easily (without having to pass the aws console ritual each time you need the hostname)."
+  s.email = "rsalvado@gnuine.com"
   s.executables = ["ec2ssh"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -29,11 +28,11 @@ Gem::Specification.new do |s|
     "lib/ec2ssh.rb",
     "lib/templates/ec2ssh_config_sample.yaml"
   ]
-  s.homepage = %q{http://github.com/rsalvado/ec2ssh}
+  s.homepage = "http://github.com/rsalvado/ec2ssh"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A script to make it easier to ssh into running amazon EC2 instances.}
+  s.rubygems_version = "1.8.24"
+  s.summary = "A script to make it easier to ssh into running amazon EC2 instances."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
