@@ -67,17 +67,17 @@ module Ec2ssh
 
     def check_filter_tag( filter, instance )
       return true unless filter
-      instance[:tags]["Name"].to_s.include? filter
+      instance[:tags]["Name"].to_s.downcase.include? filter.downcase
     end
 
     def check_filter_ip( filter, instance )
       return true unless filter
-      instance[:aws_private_ip_address].to_s.include? filter
+      instance[:aws_private_ip_address].to_s.downcase.include? filter.downcase
     end
 
     def check_filter_sg( filter, instance )
       return true unless filter
-      instance[:aws_groups].to_s.include? filter
+      instance[:aws_groups].to_s.downcase.include? filter.downcase
     end
 
   end
