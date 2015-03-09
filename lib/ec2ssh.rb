@@ -32,12 +32,16 @@ module Ec2ssh
           n = n + 1
 	end
       end
-      table = Terminal::Table.new :title => account_name, :headings => ['#', 'instance_id', 'name', 'SG', 'dns_name', 'private_ip'], :rows => rows
-      puts table
-      template = @config[:template] || "ssh #{Etc.getlogin}@<instance>"
-      selected_host = ask("Host?  ", Integer) { |q| q.in = 0..hostnames.count }
-      command = template.gsub("<instance>",hostnames[selected_host])
-      exec(command)
+      if n == 0
+        puts "No hosts found in #{account_name} account"
+      else
+        table = Terminal::Table.new :title => account_name, :headings => ['#', 'instance_id', 'name', 'SG', 'dns_name', 'private_ip'], :rows => rows
+        puts table
+        template = @config[:template] || "ssh #{Etc.getlogin}@<instance>"
+        selected_host = ask("Host?  ", Integer) { |q| q.in = 0..hostnames.count }
+        command = template.gsub("<instance>",hostnames[selected_host])
+        exec(command)
+      end
     end
 
     private
