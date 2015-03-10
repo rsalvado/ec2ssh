@@ -52,7 +52,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<highline>, [">= 1.5.2"])
     s.add_dependency(%q<aws>, [">= 2.5.6"])
     s.add_dependency(%q<activesupport>, [">= 2.3.14"])
-    s.add_dependency(%q<activesupport>, [">= 2.3.14"])
     s.add_dependency(%q<terminal-table>, [">= 1.4.5"])
   end
 end
