@@ -2,6 +2,8 @@
 ---
 # Default account to use
 :default:
+  # account_name it is just for show the name on server list
+  :account_name: default
   :id: yourid
   :key: yourkey
   # Regions to check for running instances
@@ -9,6 +11,7 @@
   - us-east-1
 # Another account, you can ec2ssh second
 :second:
+  :account_name: second
   :id: yourid
   :key: yourkey
   :regions:
