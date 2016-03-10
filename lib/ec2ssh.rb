@@ -5,6 +5,7 @@ require 'highline/import'
 silence_warnings { require 'aws' }
 require 'yaml'
 require 'fileutils'
+require 'terminal-table'
 
 module Ec2ssh
 
@@ -19,20 +20,28 @@ module Ec2ssh
     def select_instance(instances=[], filter_tag = nil, filter_ip = nil, filter_sg = nil)
       # TODO: Order by region
       # TODO: Ansi colors https://github.com/JEG2/highline/blob/master/examples/ansi_colors.rb
+      account_name = @config[:account_name]
       instances = get_all_ec2_instances
       n = 0
       hostnames = []
+      rows = []
       instances.each do |i|
         if i[:aws_state] == "running" && check_filter_tag( filter_tag, i ) && check_filter_ip( filter_ip, i ) && check_filter_sg( filter_sg, i )
-          puts "#{n}. #{i[:aws_instance_id]}: %-20s\t%-50s\t%-10s\t%s" % [ i[:tags]["Name"], i[:aws_groups].join(','), i[:dns_name], i[:aws_private_ip_address] ]
+          rows << [n, i[:aws_instance_id], i[:tags]["Name"], [:aws_groups].join(','), i[:dns_name], i[:aws_private_ip_address]]
           hostnames << i[:dns_name]
           n = n + 1
 	end
       end
-      template = @config[:template] || "ssh #{Etc.getlogin}@<instance>"
-      selected_host = ask("Host?  ", Integer) { |q| q.in = 0..hostnames.count }
-      command = template.gsub("<instance>",hostnames[selected_host])
-      exec(command)
+      if n == 0
+        puts "No hosts found in #{account_name} account"
+      else
+        table = Terminal::Table.new :title => account_name, :headings => ['#', 'instance_id', 'name', 'SG', 'dns_name', 'private_ip'], :rows => rows
+        puts table
+        template = @config[:template] || "ssh #{Etc.getlogin}@<instance>"
+        selected_host = ask("Host?  ", Integer) { |q| q.in = 0..hostnames.count }
+        command = template.gsub("<instance>",hostnames[selected_host])
+        exec(command)
+      end
     end
 
     private
